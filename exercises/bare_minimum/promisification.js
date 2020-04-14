@@ -13,7 +13,7 @@ var getGitHubProfile = function(user, callback) {
   var options = {
     url: 'https://api.github.com/users/' + user,
     headers: { 'User-Agent': 'request' },
-    json: true  // will JSON.parse(body) for us
+    json: true
   };
 
   request.get(options, function(err, res, body) {
@@ -33,7 +33,7 @@ var getGitHubProfileAsync = (user) => {
     var options = {
       url: 'https://api.github.com/users/' + user,
       headers: { 'User-Agent': 'request' },
-      json: true  // will JSON.parse(body) for us
+      json: true
     };
     request.get(options, function(err, res, body) {
       if (err) {
@@ -64,9 +64,9 @@ var generateRandomTokenAsync = () => {
       } else {
         resolve(buffer.toString('hex'));
       }
-    })
-  })
-}
+    });
+  });
+};
 
 
 // (3) Asyncronous file manipulation
@@ -91,16 +91,16 @@ var readFileAndMakeItFunnyAsync = (filePath) => {
         reject(err);
       } else {
         var funnyFile = file.split('\n')
-        .map(function(line) {
-          return line + ' lol';
-        })
-        .join('\n');
+          .map(function(line) {
+            return line + ' lol';
+          })
+          .join('\n');
 
         resolve(funnyFile);
       }
-    })
-  })
-} // TODO
+    });
+  });
+};
 
 // Export these functions so we can test them and reuse them in later exercises
 module.exports = {
